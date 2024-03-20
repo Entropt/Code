@@ -1,4 +1,3 @@
-from contextlib import nullcontext
 from new_utils import *
 
 login_url = "http://localhost:4280/login.php"
@@ -9,8 +8,10 @@ header = {
 
 session = requests.Session() 
 
+# First login into DVWA
 def initial_login():
     
+    # Default username and password of DVWA
     credentials = {
         "username": "admin",
         "password": "password",
@@ -20,6 +21,7 @@ def initial_login():
 
     header["Cookie"] = "PHPSESSID=" + session.cookies.get("PHPSESSID", domain=".localhost") + "; security=impossible"
 
+    # POST the credentials and not allow to redirect to take the PHPSESSID from response
     response = session.post(url=login_url, proxies=proxy, headers=header, data=credentials, allow_redirects=False)
 
     cookie_header = response.headers['Set-Cookie']

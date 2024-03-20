@@ -6,6 +6,8 @@ proxy = {
 }
 
 class CSRF_Manage:
+    
+    # Take the user_token in any website
     @staticmethod
     def get_token(session:requests.Session, url:str, header):
         response = session.get(url, proxies=proxy, headers=header)
